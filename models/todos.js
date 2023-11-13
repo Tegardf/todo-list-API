@@ -8,15 +8,26 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      
+      this.belongsTo(models.Users, {
+        as: 'users',
+        foreignKey: 'user_id'
+      })
     }
   }
   Todos.init(
     {
-      user_id: DataTypes.INTEGER,
+      user_id: {
+        type:DataTypes.INTEGER,
+        references:{
+          model:'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       todo: DataTypes.TEXT,
       status: DataTypes.BOOLEAN,
-      status: DataTypes.TEXT
+      detail: DataTypes.TEXT
     },
     {
       sequelize,
