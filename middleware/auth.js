@@ -15,7 +15,6 @@ const verifyToken = (req,res, next) => {
         return
     }
     const payload = jwt.verify(token,process.env.JWT_KEY)
-
     req.payload = payload
 
     next()

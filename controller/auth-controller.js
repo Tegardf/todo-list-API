@@ -40,7 +40,7 @@ module.exports = {
             return
         }
         if (bscrypt,bscrypt.compareSync(data.password, user.dataValues.password)) {
-            const token = jwt.sign({username: data.username}, process.env.JWT_KEY)
+            const token = jwt.sign({username: user.username}, process.env.JWT_KEY)
             res.status(200).json({
                 message: "berhasil login",
                 token: token
