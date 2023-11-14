@@ -1,10 +1,15 @@
 const bscrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { Users, Todo } = require("../models");
+const { Users} = require("../models");
 
 module.exports = {
     registerUser: async (req,res)=>{
         let dataUser = req.body
+        console.log(dataUser);
+        if (JSON.stringify(dataUser)==='{}') {
+            res.status(400).send("data kosong");
+            return
+        }
 
         const usernameV = await Users.findOne({where: {username:dataUser.username}})
         if (usernameV) {
@@ -35,7 +40,7 @@ module.exports = {
             where: {email:data.email}
         })
         if (user === null) {
-            res.status(402).send("belum regis")
+            res.status(400).send("belum regis")
             return
         }
         if (bscrypt,bscrypt.compareSync(data.password, user.dataValues.password)) {
