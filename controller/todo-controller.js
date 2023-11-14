@@ -72,7 +72,8 @@ module.exports ={
             await Todos.create({
                 user_id:id,
                 todo:dataTodo.todo,
-                detail:dataTodo.detail
+                detail:dataTodo.detail,
+                createdAt:new Date()
             })
             res.status(201).json({
                 message:"berhasil menambahkan Todo"
@@ -90,7 +91,10 @@ module.exports ={
             return
         }
         try {
-            await Todos.update({todo:todo},{
+            await Todos.update({
+                todo:todo,
+                updatedAt:new Date()
+            },{
                 where:{
                     id:id
                 }
@@ -109,7 +113,10 @@ module.exports ={
             return
         }
         try {
-            await Todos.update({detail:detail},{
+            await Todos.update({
+                detail:detail,
+                updatedAt:new Date()
+            },{
                 where:{
                     id:id
                 }
@@ -128,7 +135,10 @@ module.exports ={
             return
         }
         try {
-            await Todos.update({status:status},{
+            await Todos.update({
+                status:status,
+                updatedAt:new Date()
+            },{
                 where:{
                     id:id
                 }
