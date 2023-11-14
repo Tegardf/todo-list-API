@@ -14,7 +14,7 @@ const {
 const route = express.Router();
 
 route.get("/", getAllTodoUser);
-route.get("/all", getAllTodo);
+route.get("/all-user", getAllTodo);
 route.get("/:id", getTodoById);
 route.get("/detail/:id", getTodoDetail);
 route.post("/", addTodo);
