@@ -34,7 +34,6 @@ module.exports = {
             attributes:['password','username'],
             where: {email:data.email}
         })
-        console.log(user.dataValues);
         if (user === null) {
             res.status(402).send("belum regis")
             return
