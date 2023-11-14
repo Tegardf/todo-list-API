@@ -8,19 +8,19 @@ module.exports = {
         nama: 'tegar',
         username: 'tegar',
         email: 'tegar@gmail.com',
-        passsword: '123'
+        password: '123'
       },
       {
         nama: 'david',
         username: 'david',
         email: 'david@gmail.com',
-        passsword: '098'
+        password: '098'
       },
       {
         nama: 'supri',
         username: 'supri12',
         email: 'supri@gmail.com',
-        passsword: '378'
+        password: '378'
       }
     ])
   },

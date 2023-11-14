@@ -1,14 +1,13 @@
-const bscrypt = require('bcrypt')
 const { Users, Todo } = require("../models");
 
 module.exports ={
     getAllUser: async (req,res)=>{
         const userData = await Users.findAll({
-            attributes: ['nama','username']
+            // attributes: ['nama','username']
         });
         
         try {
-            console.log(userData)
+            // console.log(userData)
             res.status(200).json({
                 message: "berhasis mendapatkan data",
                 data: userData
@@ -34,22 +33,29 @@ module.exports ={
         }
 
     },
-    addUser: async (req,res)=>{
-        let dataUser = req.body
-
+    deleteUserById: async (req,res)=>{
+        const {id} = req.params
         try {
-            const hashPwd = bscrypt.hashSync(dataUser.password, 10)
-            dataUser.password = hashPwd
-            
+            await Users.destroy({
+                where:{
+                    id:id
+                }
+            })
+            res.status(200).send("success deleted user id:" + id)
         } catch (error) {
             console.log(error)
             res.status(500).send("internal server error")
         }
     },
-    deleteUserById: async (req,res)=>{
-
-    },
     deleteAllUser: async (req,res)=>{
-
+        try {
+            await Users.destroy({
+                truncate:true
+            })
+            res.status(200).send("success deleted all user")
+        } catch (error) {
+            console.log(error)
+            res.status(500).send("internal server error")
+        }
     }
 }
